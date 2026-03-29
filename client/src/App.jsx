@@ -102,7 +102,7 @@ export default function App() {
       <nav className="nav">
         <span className="nav-logo">🧠</span>
         <span className="nav-title">VCTranslate</span>
-        <span className="nav-tagline">Translate plain English into overintellectualized VC slop</span>
+        <span className="nav-tagline">Speak VC. Overintellectualize everything. Your thoughts deserve to be 40x more complicated than they are.</span>
       </nav>
 
       <div className="lang-bar">
