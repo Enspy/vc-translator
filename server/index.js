@@ -7,6 +7,7 @@ const { MASTER_SYSTEM_PROMPT, DIALECT_PROMPTS } = require('./prompts');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+app.set('trust proxy', 1);
 app.use(express.json());
 
 // Override any platform-injected CSP headers
@@ -76,7 +77,7 @@ app.post('/api/translate', limiter, async (req, res) => {
   const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
   try {
-    const stream = anthropic.messages.stream({
+    const stream = await anthropic.messages.create({
       model: 'claude-sonnet-4-6',
       max_tokens: 1000,
       system: systemPrompt,
@@ -86,10 +87,13 @@ app.post('/api/translate', limiter, async (req, res) => {
           content: `Translate this plain English into the specified VC dialect:\n\n${input}`,
         },
       ],
+      stream: true,
     });
 
-    for await (const text of stream.textStream) {
-      res.write(`data: ${JSON.stringify({ text })}\n\n`);
+    for await (const event of stream) {
+      if (event.type === 'content_block_delta' && event.delta.type === 'text_delta') {
+        res.write(`data: ${JSON.stringify({ text: event.delta.text })}\n\n`);
+      }
     }
 
     res.write('data: [DONE]\n\n');
