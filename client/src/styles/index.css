@@ -1,0 +1,388 @@
+:root {
+  --bg: #0a0a0a;
+  --surface: #111111;
+  --border: #2a2a2a;
+  --text: #e8e8e8;
+  --text-muted: #666;
+  --text-sub: #999;
+  --accent: #4f9eff;
+  --accent-hover: #6aacff;
+  --accent-dim: rgba(79, 158, 255, 0.12);
+  --error: #f87171;
+  --success: #4ade80;
+  --font-ui: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+  --font-output: Georgia, 'Times New Roman', serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Nav ─────────────────────────────────── */
+.nav {
+  height: 56px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 10px;
+  background: var(--bg);
+}
+
+.nav-logo {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.nav-title {
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--text);
+  letter-spacing: -0.3px;
+}
+
+/* ── Language bar ────────────────────────── */
+.lang-bar {
+  height: 50px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: stretch;
+  background: var(--bg);
+}
+
+.lang-source {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 24px;
+  border-right: 1px solid var(--border);
+  flex-shrink: 0;
+  width: 50%;
+}
+
+.lang-source-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  padding-bottom: 2px;
+  border-bottom: 2px solid var(--accent);
+}
+
+.lang-swap {
+  color: var(--text-muted);
+  font-size: 18px;
+  user-select: none;
+}
+
+.lang-target {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.lang-target::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Dialect pills ───────────────────────── */
+.dialect-pill {
+  flex-shrink: 0;
+  padding: 5px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-sub);
+  font-size: 13px;
+  font-family: var(--font-ui);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color 0.12s, color 0.12s, background 0.12s;
+  position: relative;
+}
+
+.dialect-pill:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-dim);
+}
+
+.dialect-pill.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* Tooltip */
+.dialect-pill::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1e1e1e;
+  border: 1px solid var(--border);
+  color: var(--text-sub);
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 11px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.1s;
+  z-index: 20;
+}
+
+.dialect-pill:hover::after {
+  opacity: 1;
+}
+
+/* ── Main panels ─────────────────────────── */
+.panels {
+  display: flex;
+  height: calc(100vh - 106px);
+  min-height: 400px;
+}
+
+.panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.panel-divider {
+  width: 1px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+/* ── Input panel ─────────────────────────── */
+.input-textarea {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+  padding: 24px;
+  font-size: 18px;
+  font-family: var(--font-ui);
+  color: var(--text);
+  line-height: 1.65;
+  min-height: 0;
+}
+
+.input-textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.input-textarea.shake {
+  animation: shake 0.35s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  15%       { transform: translateX(-7px); }
+  40%       { transform: translateX(6px); }
+  65%       { transform: translateX(-4px); }
+  85%       { transform: translateX(3px); }
+}
+
+.input-error {
+  padding: 0 24px 10px;
+  font-size: 13px;
+  color: var(--error);
+}
+
+.input-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  border-top: 1px solid var(--border);
+  gap: 12px;
+}
+
+.translate-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 9px 22px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: var(--font-ui);
+  cursor: pointer;
+  transition: background 0.15s, opacity 0.15s;
+  min-width: 100px;
+  white-space: nowrap;
+}
+
+.translate-btn:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.translate-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.char-count {
+  font-size: 13px;
+  color: var(--text-muted);
+  tabular-nums: all;
+}
+
+.char-count.over {
+  color: var(--error);
+}
+
+/* ── Output panel ────────────────────────── */
+.output-body {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.output-text {
+  font-size: 18px;
+  font-family: var(--font-output);
+  color: var(--text);
+  line-height: 1.75;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.output-placeholder {
+  font-size: 18px;
+  font-family: var(--font-ui);
+  color: var(--text-muted);
+}
+
+.output-loading {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.output-loading-label {
+  font-size: 14px;
+  font-family: var(--font-ui);
+  color: var(--text-muted);
+  font-style: italic;
+  animation: pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+.output-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 12px 20px;
+  border-top: 1px solid var(--border);
+  min-height: 53px;
+}
+
+/* ── Copy button ─────────────────────────── */
+.copy-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-family: var(--font-ui);
+  color: var(--text-sub);
+  cursor: pointer;
+  transition: border-color 0.12s, color 0.12s;
+}
+
+.copy-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.copy-btn.copied {
+  border-color: var(--success);
+  color: var(--success);
+}
+
+/* ── Token fade-in ───────────────────────── */
+@keyframes tokenFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.token {
+  animation: tokenFade 0.08s ease forwards;
+}
+
+/* ── Mobile ──────────────────────────────── */
+@media (max-width: 768px) {
+  .lang-source {
+    width: 45%;
+    padding: 0 14px;
+    gap: 10px;
+  }
+
+  .panels {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .panel {
+    min-height: 300px;
+  }
+
+  .panel-divider {
+    width: 100%;
+    height: 1px;
+  }
+
+  .input-textarea,
+  .output-text,
+  .output-placeholder {
+    font-size: 16px;
+    padding: 16px;
+  }
+
+  .output-body {
+    padding: 16px;
+  }
+
+  .input-footer {
+    padding: 10px 16px;
+  }
+
+  .dialect-pill {
+    font-size: 12px;
+    padding: 4px 12px;
+  }
+
+  .dialect-pill::after {
+    display: none;
+  }
+}
