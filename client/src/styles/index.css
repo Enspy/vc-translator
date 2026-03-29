@@ -54,6 +54,14 @@ body {
   letter-spacing: -0.2px;
 }
 
+.nav-tagline {
+  font-size: 13px;
+  color: var(--text-muted);
+  padding-left: 12px;
+  border-left: 1px solid var(--border);
+  margin-left: 4px;
+}
+
 /* ── Language bar ────────────────────────── */
 .lang-bar {
   display: flex;
