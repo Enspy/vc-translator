@@ -9,6 +9,15 @@ const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
 
+// Override any platform-injected CSP headers
+app.use((req, res, next) => {
+  res.setHeader(
+    'Content-Security-Policy',
+    "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self'; img-src 'self' data:; font-src 'self';"
+  );
+  next();
+});
+
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 20,
@@ -68,7 +77,7 @@ app.post('/api/translate', limiter, async (req, res) => {
 
   try {
     const stream = anthropic.messages.stream({
-      model: 'claude-sonnet-4-5',
+      model: 'claude-sonnet-4-6',
       max_tokens: 1000,
       system: systemPrompt,
       messages: [
