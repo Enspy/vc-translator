@@ -16,13 +16,16 @@ const LOADING_MESSAGES = [
 export default function App() {
   const [input, setInput] = useState('');
   const [dialect, setDialect] = useState('andreessen');
-  const [output, setOutput] = useState('');
+  // words: array of { id: number, text: string }
+  const [words, setWords] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [shake, setShake] = useState(false);
   const [loadingMsg, setLoadingMsg] = useState('');
 
   const loadingIntervalRef = useRef(null);
+  const wordBuffer = useRef('');
+  const wordCounter = useRef(0);
 
   const startLoadingMessages = () => {
     let i = Math.floor(Math.random() * LOADING_MESSAGES.length);
@@ -39,6 +42,25 @@ export default function App() {
     setLoadingMsg('');
   };
 
+  const flushBuffer = (final = false) => {
+    const buf = wordBuffer.current;
+    if (!buf) return;
+
+    // Split on whitespace boundaries, keeping the delimiters as separate tokens
+    const parts = final ? [buf] : buf.split(/(\s+)/);
+    const toFlush = final ? parts : parts.slice(0, -1);
+    wordBuffer.current = final ? '' : (parts[parts.length - 1] ?? '');
+
+    if (toFlush.length > 0) {
+      const newWords = toFlush
+        .filter(t => t.length > 0)
+        .map(text => ({ id: wordCounter.current++, text }));
+      if (newWords.length > 0) {
+        setWords(prev => [...prev, ...newWords]);
+      }
+    }
+  };
+
   const handleTranslate = useCallback(async () => {
     if (!input.trim()) {
       setError('Even VCs need something to translate.');
@@ -48,7 +70,9 @@ export default function App() {
     }
 
     setError('');
-    setOutput('');
+    setWords([]);
+    wordBuffer.current = '';
+    wordCounter.current = 0;
     setIsLoading(true);
     startLoadingMessages();
 
@@ -56,13 +80,16 @@ export default function App() {
       input,
       dialect,
       (chunk) => {
-        setOutput((prev) => prev + chunk);
+        wordBuffer.current += chunk;
+        flushBuffer(false);
       },
       () => {
+        flushBuffer(true);
         setIsLoading(false);
         stopLoadingMessages();
       },
       (errMsg) => {
+        flushBuffer(true);
         setIsLoading(false);
         stopLoadingMessages();
         setError(errMsg || 'The algorithm failed. A sign, perhaps, that we are too early.');
@@ -80,12 +107,12 @@ export default function App() {
       <div className="lang-bar">
         <div className="lang-source">
           <span className="lang-source-label">Plain English</span>
-          <span className="lang-swap" aria-hidden="true">⇌</span>
         </div>
+        <span className="lang-swap" aria-hidden="true">⇌</span>
         <DialectSelector active={dialect} onChange={setDialect} />
       </div>
 
-      <div className="panels">
+      <div className="panels-wrapper">
         <InputPanel
           value={input}
           onChange={setInput}
@@ -95,9 +122,8 @@ export default function App() {
           shake={shake}
           onClearError={() => setError('')}
         />
-        <div className="panel-divider" aria-hidden="true" />
         <OutputPanel
-          output={output}
+          words={words}
           isLoading={isLoading}
           loadingMsg={loadingMsg}
         />
