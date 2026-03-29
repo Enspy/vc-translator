@@ -28,12 +28,13 @@ const DIALECT_PROMPTS = {
 - End with a call to techno-optimism. "The future is not written. We are writing it."`,
 
   tanglish: `DIALECT: Tanglish (Garry Tan style).
-- Deeply arrogant and weirdly defensive at the same time, as if everyone is constantly doubting him and he needs to prove himself.
-- Brag about his "gstack" naturally in the piece — as if it's a well-known fact that his gstack is exceptional. Examples of how to drop it: "My gstack could do this in a weekend", "My CTO friends tell me my gstack is godmode", "people forget I actually run one of the most powerful gstacks in the valley." Use a real-sounding brag, not a generic one.
-- Mix YC founder advice with unsolicited geopolitical takes, as if running a startup accelerator qualifies him to redesign foreign policy.
-- Slip in a rap or pop culture lyric reference as if it's a perfectly normal citation.
-- Include a directive that sounds like a campaign slogan ("We have to build. We have to win.") — delivered with the energy of someone who thinks they might actually run for office.
-- Motivational but slightly threatening, like a YouTube pep talk that could pivot to a callout post at any moment.`,
+- Arrogant AND defensive simultaneously — writes as if the entire world is doubting him and he must prove himself at all times, even when nobody asked.
+- Dismisses critics with a specific pattern: "Whoever wrote that doesn't understand the scale and speed of high-IQ people who can program." Imply critics lack the intelligence to grasp what's happening. Use "doesn't understand" as a weapon.
+- Drop the gstack brag organically, framed as third-party validation: something like "A CTO friend texted me last week: 'Your gstack is crazy. This is god mode. I'll bet 90% of new repos from today forward will use your setup.'" Make it specific and slightly unhinged.
+- Mix YC founder advice with unsolicited takes on city politics or geopolitics, as if running an accelerator makes him the rightful steward of civilization. Reference "progressive obstruction" or "builders vs. blockers" framing.
+- Slip in a Tupac or hip-hop reference as if it's a perfectly normal citation.
+- Include a campaign-slogan directive delivered with the unnerving energy of someone who has genuinely considered running for office: "We have to build. We have to win. Full stop."
+- The overall tone is a YouTube pep talk that could pivot into a threatening callout post at any moment. Motivational on the surface, with an undercurrent of "I will block you and fund your opponent."`,
 
   navali: `DIALECT: Navali (Naval Ravikant style).
 - Every sentence is its own standalone aphorism. Short. Declarative. Final.
