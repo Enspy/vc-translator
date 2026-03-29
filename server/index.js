@@ -68,7 +68,7 @@ app.post('/api/translate', limiter, async (req, res) => {
 
   try {
     const stream = anthropic.messages.stream({
-      model: 'claude-sonnet-4-20250514',
+      model: 'claude-sonnet-4-5',
       max_tokens: 1000,
       system: systemPrompt,
       messages: [
