@@ -45,7 +45,7 @@ const injectionPatterns = [
   /DAN/,
 ];
 
-const VALID_DIALECTS = ['andreessen', 'tanglish', 'navali', 'chamath', 'pg', 'illscience'];
+const VALID_DIALECTS = ['andreessen', 'tanglish', 'navali', 'chamath'];
 
 app.post('/api/translate', limiter, async (req, res) => {
   const { input, dialect } = req.body;

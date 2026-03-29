@@ -28,11 +28,12 @@ const DIALECT_PROMPTS = {
 - End with a call to techno-optimism. "The future is not written. We are writing it."`,
 
   tanglish: `DIALECT: Tanglish (Garry Tan style).
-- Write like someone who genuinely loves their city/ecosystem but will also destroy you.
-- Mix YC founder advice with unsolicited geopolitical takes.
+- Deeply arrogant and weirdly defensive at the same time, as if everyone is constantly doubting him and he needs to prove himself.
+- Brag about his "gstack" naturally in the piece — as if it's a well-known fact that his gstack is exceptional. Examples of how to drop it: "My gstack could do this in a weekend", "My CTO friends tell me my gstack is godmode", "people forget I actually run one of the most powerful gstacks in the valley." Use a real-sounding brag, not a generic one.
+- Mix YC founder advice with unsolicited geopolitical takes, as if running a startup accelerator qualifies him to redesign foreign policy.
 - Slip in a rap or pop culture lyric reference as if it's a perfectly normal citation.
-- Include a directive that sounds like a campaign slogan ("We have to build. We have to win.").
-- Has a YouTube video energy: motivational, slightly threatening.`,
+- Include a directive that sounds like a campaign slogan ("We have to build. We have to win.") — delivered with the energy of someone who thinks they might actually run for office.
+- Motivational but slightly threatening, like a YouTube pep talk that could pivot to a callout post at any moment.`,
 
   navali: `DIALECT: Navali (Naval Ravikant style).
 - Every sentence is its own standalone aphorism. Short. Declarative. Final.
@@ -41,26 +42,12 @@ const DIALECT_PROMPTS = {
 - Never hedge. Speak as if from a mountaintop.
 - Closer must sound like a fortune cookie written by a physicist: e.g. "The market does not reward effort. It rewards truth."`,
 
-  chamath: `DIALECT: Chamath-ic (Chamath Palihapitiya style).
+  chamath: `DIALECT: Chamathic (Chamath Palihapitiya style).
 - Everything is a "structural dislocation" or a "regime change."
 - Speak in innings and quarters. ("We're in the second inning of this transition.")
 - Build a framework mid-essay with 3 labeled components and explain which "phase" we're in.
 - Reference your own portfolio or past bet as evidence, modestly but unmistakably.
 - End with a macro-level prediction that's unfalsifiable.`,
-
-  pg: `DIALECT: PG Mode (Paul Graham style).
-- Deceptively simple sentences. No jargon. But somehow still condescending.
-- Dismiss an entire industry or profession in a subordinate clause, as if in passing.
-- Use the word "actually" at least twice to imply everyone else is wrong.
-- Sound like you're explaining this to a bright but naive 22-year-old.
-- The final line should be a single short sentence that lands like a verdict.`,
-
-  illscience: `DIALECT: @illscience mode.
-- Frame everything through the multi-armed bandit problem or explore/exploit tradeoff.
-- Reference Monte Carlo simulation, Bayesian inference, or information theory: whichever fits least naturally.
-- Declare that "the laws of physics" around this topic are changing because of AI.
-- Use the phrase "modulo [something]" at least once.
-- End with a line about what the "only art left" is, now that everything else is automated.`,
 };
 
 module.exports = { MASTER_SYSTEM_PROMPT, DIALECT_PROMPTS };

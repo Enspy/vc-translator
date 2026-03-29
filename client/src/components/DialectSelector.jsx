@@ -9,7 +9,7 @@ const DIALECTS = [
   {
     id: 'tanglish',
     label: 'Tanglish',
-    tooltip: 'Passionate. Unhinged. Has a YouTube video about this.',
+    tooltip: 'Arrogant. Defensive. Has mentioned his gstack unprompted.',
   },
   {
     id: 'navali',
@@ -18,18 +18,8 @@ const DIALECTS = [
   },
   {
     id: 'chamath',
-    label: 'Chamath-ic',
+    label: 'Chamathic',
     tooltip: 'Everything is a structural dislocation. Talks in innings.',
-  },
-  {
-    id: 'pg',
-    label: 'PG Mode',
-    tooltip: 'Deceptively simple sentences. Still condescending.',
-  },
-  {
-    id: 'illscience',
-    label: '@illscience',
-    tooltip: "Multi-armed bandits. Laws of physics. The only art left.",
   },
 ];
 
